@@ -8,7 +8,7 @@
 		<title>Cafe with a Vue</title>
 	</head>
 	<body>
-		<div class="app">
+		<div id="app">
 			<h1>La belle vue</h1>
 			<p class="description">
 				Bienvenue dans notre café la belle vue ! Nous sommes réputés pour notre
@@ -16,9 +16,69 @@
 				ou avec un goûter réconfortant. Mais attention, vous verrez qu'il est
 				difficile de s'arrêter.
 			</p>
-			<footer class="footer">
-				<p>Copyright La belle vue 2020</p>
-			</footer>
+			<h2> Panier d'achat :</h2>
+			<ul>
+				<li v-for="item in shoppingCart">
+					 <a v-bind:href = "item.cost">{{ item.label}} </a> : {{ item.cost}} $
+				</li>
+			</ul>
+			<p>Total : {{ totalAmoun }}</p>
+			<div>
+				<h2>Montrer ma couleur préférée</h2>
+			    <button v-on:click="showColor"> Cliequez ici ! </button>
+			</div>
+			<div>
+				<h2> Changer ma couleur préférée</h2>
+				<label for="change-color"> Changer Couleur:</label>
+				<input id = "change-color" type="text" @keyup.enter="changeColor"/>
+			</div>
 		</div>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script>
+			const app = new Vue({
+				el : '#app',
+				data : {
+					shoppingCart : [
+					  {
+						  label : 'Apples',
+						  cost : 10,
+						  url : '/apples.html'
+					  },
+					  {
+						label : 'Bananes',
+						cost : 2,
+						url : '/bananes.html'
+					  },
+					  {
+						label : 'Coconuts',
+						cost : 28,
+						url : '/coconuts.html'
+
+					  }
+					],
+					favoriteColor : 'bleu',
+				},
+					methods:{
+						showColor(){
+							alert(this.favoriteColor)
+						},
+						changeColor(){
+							this.favoriteColor = document.getElementById('change-color').value
+
+						}
+					},
+				
+			
+				computed : {
+					totalAmoun(){
+						let total = 0 
+						this.shoppingCart.forEach(item =>{
+							total += item.cost
+						})
+						return total
+					}
+				}
+			})
+		</script>
 	</body>
 </html>
