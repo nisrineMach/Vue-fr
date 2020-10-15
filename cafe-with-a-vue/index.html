@@ -24,13 +24,13 @@
 			</ul>
 			<p>Total : {{ totalAmoun }}</p>
 			<div>
-				<h2>Montrer ma couleur préférée</h2>
+				<h2>Montrer ma couleur préférée: </h2>
 			    <button v-on:click="showColor"> Cliequez ici ! </button>
 			</div>
 			<div>
-				<h2> Changer ma couleur préférée</h2>
+				<h2> Changer ma couleur préférée : {{ favoriteColor}}</h2>
 				<label for="change-color"> Changer Couleur:</label>
-				<input id = "change-color" type="text" @keyup.enter="changeColor"/>
+				<input id = "change-color" type="text" v-model="favoriteColor"/>
 			</div>
 		</div>
 		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -62,10 +62,10 @@
 						showColor(){
 							alert(this.favoriteColor)
 						},
-						changeColor(){
+						/*changeColor(){
 							this.favoriteColor = document.getElementById('change-color').value
 
-						}
+						}*/
 					},
 				
 			
